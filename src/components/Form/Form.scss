@@ -1,0 +1,11 @@
+@use '../../styles/vars/var';
+
+.form {
+  max-width: var.$content-max-width;
+  margin: 0 auto;
+}
+
+.success-image {
+  width: 328px;
+  height: 290px;
+}

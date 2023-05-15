@@ -1,0 +1,29 @@
+@use '../../styles/vars/color';
+
+.button {
+  min-width: 100px;
+  padding: 4px 19px;
+  border-radius: 80px;
+  background-color: color.$primary;
+  line-height: 26px;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background-color: color.$btn-hover;
+  }
+
+  &:disabled {
+    background-color: color.$btn-disabled;
+    color: color.$default-white;
+    cursor: default;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px color.$secondary;
+  }
+}

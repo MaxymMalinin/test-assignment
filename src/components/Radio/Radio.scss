@@ -1,0 +1,50 @@
+@use '../../styles/vars/color';
+@use '../../styles/vars/var';
+
+.radio {
+  display: flex;
+  align-items: center;
+
+  &_field {
+    appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border: var.$border;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+    cursor: pointer;
+
+    &:focus-visible {
+      box-shadow: var.$box-shadow;
+    }
+
+    &::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 10px 10px color.$secondary;
+    }
+
+    &:checked {
+      border-color: color.$secondary;
+
+      &::before {
+        transform: scale(1);
+        border-color: color.$secondary;
+      }
+    }
+  }
+
+  &_label {
+    padding-left: 12px;
+    cursor: pointer;
+  }
+}

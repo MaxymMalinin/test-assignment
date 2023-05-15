@@ -1,0 +1,12 @@
+.radio-group {
+  margin-top: 43px;
+  text-align: start;
+
+  & > * + * {
+    margin-top: 11px;
+  }
+
+  & > * + * + * {
+    margin-top: 7px;
+  }
+}

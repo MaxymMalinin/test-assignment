@@ -1,0 +1,21 @@
+@use './color';
+
+$header-height: 60px;
+
+$content-max-width: 380px;
+
+$page-min-width: 360px;
+$page-max-width: 1170px;
+
+$spacing-none: 0;
+$spacing-small: 0 16px;
+$spacing: 0 32px;
+$spacing-big: 0 60px;
+
+$border: 1px solid color.$border;
+$border-black: 1px solid color.$black;
+$border-error: 1px solid color.$error;
+$border-radius: 4px;
+
+$box-shadow: 0 0 0 1px color.$secondary;
+$box-shadow-error: 0 0 0 1px color.$error;

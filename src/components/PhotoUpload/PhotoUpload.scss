@@ -1,0 +1,77 @@
+@use '../../styles/vars/color';
+@use '../../styles/vars/var';
+@use '../../styles/vars/placeholder';
+
+.photo {
+  position: relative;
+  margin: 47px auto 0;
+
+  &_field {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+
+    &:focus-visible + .photo_label {
+      box-shadow: var.$box-shadow;
+    }
+  }
+
+  &_label {
+    display: flex;
+    height: 54px;
+    border-radius: var.$border-radius;
+    cursor: pointer;
+
+    &_text {
+      display: flex;
+      align-items: center;
+      padding: var.$spacing-small;
+      border: var.$border-black;
+      border-radius: 4px 0px 0px 4px;
+    }
+
+    &_file-name {
+      padding: 14px 0 14px 16px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: start;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      border: var.$border;
+      border-left: none;
+      border-radius: 0 4px 4px 0;
+
+      &__placeholder {
+        color: color.$grey;
+      }
+    }
+
+    &_error {
+      @extend %text-small;
+      position: absolute;
+      left: 16px;
+      top: calc(100% + 4px);
+      color: color.$error;
+    }
+  }
+
+  &__error {
+    .photo_field:focus-visible + .photo_label {
+      box-shadow: 0 0 0 2px color.$error;
+    }
+
+    .photo_label_text {
+      border: var.$border-error;
+      box-shadow: var.$box-shadow-error;
+    }
+    .photo_label_file-name {
+      border: var.$border-error;
+      border-left: none;
+      box-shadow: var.$box-shadow-error;
+    }
+  }
+}

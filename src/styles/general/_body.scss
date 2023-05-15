@@ -1,0 +1,10 @@
+@use '../vars/color';
+@use '../vars/var';
+
+body {
+  font-family: 'Nunito';
+  background-color: color.$bg;
+  color: color.$black;
+  line-height: 26px;
+  min-width: var.$page-min-width;
+}

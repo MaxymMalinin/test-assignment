@@ -1,0 +1,32 @@
+@use '../../styles/vars/var';
+@use '../../styles/mixins/breakpoint' as *;
+
+.section {
+  margin: 140px auto 100px;
+  padding: var.$spacing-small;
+  text-align: center;
+  max-width: var.$page-max-width;
+
+  @include for-tablet {
+    padding: var.$spacing;
+  }
+
+  @include for-desktop-small {
+    padding: var.$spacing-big;
+  }
+
+  @include for-desktop {
+    padding: var.$spacing-none;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: calc(var.$header-height + 20px);
+    margin-top: calc(-1 * (var.$header-height + 20px));
+  }
+
+  & > * + * {
+    margin-top: 50px;
+  }
+}
