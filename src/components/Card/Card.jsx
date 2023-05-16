@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Svg from '../svg/svg';
 import Tooltip from '../Tooltip/Tooltip';
 
 import './Card.scss';
 
 function Card({ user: { photo, name, position, email, phone } }) {
+  const [showPhotoFallback, setShowPhotoFallback] = useState(false);
+
   return (
     <div className='user'>
-      {photo ? (
-        <img className='user_photo' src={photo} alt='User photo' />
-      ) : (
+      {showPhotoFallback ? (
         <Svg id='photo-cover' className='user_photo' />
+      ) : (
+        <img
+          className='user_photo'
+          src={photo}
+          alt='User photo'
+          onError={e => setShowPhotoFallback(true)}
+        />
       )}
 
       <Tooltip title={name}>

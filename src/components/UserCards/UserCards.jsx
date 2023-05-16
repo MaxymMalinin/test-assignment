@@ -11,14 +11,26 @@ import './UserCards.scss';
 function UserCards() {
   const [users, setUsers] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [nextPageUrl, setNextPageUrl] = useState(null);
+  const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
   useEffect(() => {
     getUsers()
       .then(data => {
         setUsers(data.users);
+        setNextPageUrl(data.links.next_url);
+        setCurrentPageNumber(data.page);
       })
       .finally(() => setLoading(false));
   }, []);
+
+  const handleClick = () => {
+    getUsers(currentPageNumber + 1).then(data => {
+      setUsers([...users, ...data.users]);
+      setNextPageUrl(data.links.next_url);
+      setCurrentPageNumber(data.page);
+    });
+  };
 
   if (isLoading) {
     return <Preloader />;
@@ -27,11 +39,14 @@ function UserCards() {
   return (
     <>
       <div className='users'>
-        {users.map(user => (
-          <Card key={user.id} user={user} />
-        ))}
+        {users
+          .sort((a, b) => b.registration_timestamp - a.registration_timestamp)
+          .map(user => (
+            <Card key={user.id} user={user} />
+          ))}
       </div>
-      <Button>Show more</Button>
+
+      {nextPageUrl && <Button onClick={handleClick}>Show more</Button>}
     </>
   );
 }

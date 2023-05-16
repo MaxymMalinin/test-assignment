@@ -1,10 +1,15 @@
 @use '../vars/color';
 @use '../vars/var';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
   background-color: color.$bg;
   color: color.$black;
   line-height: 26px;
   min-width: var.$page-min-width;
+  -webkit-tap-highlight-color: transparent;
 }
