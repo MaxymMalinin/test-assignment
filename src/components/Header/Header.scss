@@ -37,6 +37,15 @@
 
   &_link {
     display: flex;
+    border-radius: var.$border-radius;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px color.$secondary;
+    }
   }
 
   &_buttons {
