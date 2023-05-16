@@ -1,0 +1,14 @@
+.preloader {
+  width: 48px;
+  height: 48px;
+  animation: rotate 1.2s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

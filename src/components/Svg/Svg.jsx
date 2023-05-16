@@ -2,6 +2,7 @@ import React from 'react';
 import '../../img/logo.svg';
 import '../../img/photo-cover.svg';
 import '../../img/success-image.svg';
+import '../../img/preloader.svg';
 
 function Svg({ id, className }) {
   return (

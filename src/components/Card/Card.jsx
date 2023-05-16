@@ -4,29 +4,30 @@ import Tooltip from '../Tooltip/Tooltip';
 
 import './Card.scss';
 
-function Card() {
+function Card({ user: { photo, name, position, email, phone } }) {
   return (
     <div className='user'>
-      <Svg id='photo-cover' className='user_photo' />
+      {photo ? (
+        <img className='user_photo' src={photo} alt='User photo' />
+      ) : (
+        <Svg id='photo-cover' className='user_photo' />
+      )}
 
-      <Tooltip title='placeholder'>
-        <p className='user_text'>
-          Takamaru Ayako Jurrien Takamaru Ayako JurrienTakamaru Ayako
-          JurrienTakamaru Ayako JurrienTakamaru Ayako Jurrien
-        </p>
+      <Tooltip title={name}>
+        <p className='user_text'>{name}</p>
       </Tooltip>
 
       <div className='user_description'>
-        <Tooltip title='placeholder'>
-          <p className='user_text'>Lead Independent Director</p>
+        <Tooltip title={position}>
+          <p className='user_text'>{position}</p>
         </Tooltip>
 
-        <Tooltip title='placeholder'>
-          <p className='user_text'>Takamuru@gmail.com</p>
+        <Tooltip title={email}>
+          <p className='user_text'>{email}</p>
         </Tooltip>
 
-        <Tooltip title='placeholder'>
-          <p className='user_text'>+38 (098) 278 90 24</p>
+        <Tooltip title={phone}>
+          <p className='user_text'>{phone}</p>
         </Tooltip>
       </div>
     </div>

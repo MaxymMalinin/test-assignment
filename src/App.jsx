@@ -18,7 +18,6 @@ function App() {
             Working with GET request
           </Typography>
           <UserCards />
-          <Button>Show more</Button>
         </Section>
 
         <Section id={sectionIds.formSection}>

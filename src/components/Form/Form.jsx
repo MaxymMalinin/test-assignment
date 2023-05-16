@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { object, string, number, mixed } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { imageDimensionCheck } from '../../services/customYupValidation';
+import { imageDimensionCheck } from '../../util/customYupValidation';
 
 import Button from '../Button/Button';
 import Input from '../Input/Input';
