@@ -54,6 +54,7 @@
   &__error {
     .input_field {
       border: var.$border-error;
+      box-shadow: var.$box-shadow-error;
     }
     .input_label {
       color: color.$error;
