@@ -25,25 +25,28 @@
     cursor: pointer;
 
     &_text {
-      display: flex;
+      display: grid;
       align-items: center;
-      padding: var.$spacing-small;
+      padding: 0 14px;
       border: var.$border-black;
       border-radius: 4px 0px 0px 4px;
     }
 
-    &_file-name {
-      padding: 14px 0 14px 16px;
-      display: flex;
+    &_file-container {
+      padding: 14px 16px;
+      display: grid;
       align-items: center;
       width: 100%;
+      border: var.$border;
+      border-left: none;
+      border-radius: 0 4px 4px 0;
+    }
+
+    &_file-name {
       text-align: start;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      border: var.$border;
-      border-left: none;
-      border-radius: 0 4px 4px 0;
 
       &__placeholder {
         color: color.$grey;
@@ -68,7 +71,7 @@
       border: var.$border-error;
       box-shadow: var.$box-shadow-error;
     }
-    .photo_label_file-name {
+    .photo_label_file-container {
       border: var.$border-error;
       border-left: none;
       box-shadow: var.$box-shadow-error;

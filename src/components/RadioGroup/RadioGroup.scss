@@ -2,6 +2,10 @@
   margin-top: 43px;
   text-align: start;
 
+  &__centered {
+    text-align: center;
+  }
+
   & > * + * {
     margin-top: 11px;
   }

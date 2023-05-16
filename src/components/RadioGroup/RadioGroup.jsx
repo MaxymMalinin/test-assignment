@@ -1,27 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Radio from '../Radio/Radio';
 import Typography from '../Typography/Typography';
+import Preloader from '../Preloader/Preloader';
+import { getPositions } from '../../services/testAssignmentApi';
 
 import './RadioGroup.scss';
 
-const allPositions = {
-  success: true,
-  positions: [
-    { id: 1, name: 'Lawyer' },
-    {
-      id: 2,
-      name: 'Content manager',
-    },
-    { id: 3, name: 'Security' },
-    { id: 4, name: 'Designer' },
-  ],
-};
-
 function RadioGroup({ id, name }) {
+  const [positions, setPositions] = useState();
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    getPositions()
+      .then(data => setPositions(data.positions))
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className='radio-group radio-group__centered'>
+        <Preloader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='radio-group radio-group__centered'>
+        <Typography>
+          An error occurred while loading user positions. Reload the page or try
+          again later.
+        </Typography>
+      </div>
+    );
+  }
+
   return (
     <div className='radio-group'>
       <Typography>Select your position</Typography>
-      {allPositions.positions.map(item => (
+      {positions.map(item => (
         <Radio
           key={item.id}
           value={item.id}

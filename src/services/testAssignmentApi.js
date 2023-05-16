@@ -6,12 +6,11 @@ axios.defaults.baseURL =
 const getUsers = (page = '1') => {
   return axios
     .get(`/users?page=${page}&count=6`)
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .then(response => response.data);
 };
 
-export { getUsers };
+const getPositions = () => {
+  return axios.get('/positions').then(response => response.data);
+};
+
+export { getUsers, getPositions };

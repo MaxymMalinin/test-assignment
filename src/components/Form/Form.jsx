@@ -109,7 +109,7 @@ function Form({ id }) {
             id='photo'
             name='photo'
             label='Upload'
-            helperText='Upload your photo'
+            placeholder='Upload your photo'
           />
         </form>
       </FormProvider>
