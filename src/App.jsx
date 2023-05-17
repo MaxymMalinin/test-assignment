@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import Button from './components/Button/Button';
+import Section from './components/Section/Section';
+import { sectionIds } from './constants/sectionIds';
 import Typography from './components/Typography/Typography';
 import UserCards from './components/UserCards/UserCards';
 import Form from './components/Form/Form';
-import Section from './components/Section/Section';
-import { sectionIds } from './constants/sectionIds';
+import UserContextProvider from './components/UserContextProvider/UserContextProvider';
 
 function App() {
   return (
@@ -13,16 +13,18 @@ function App() {
       <Header />
 
       <main>
-        <Section id={sectionIds.usersSection}>
-          <Typography as='h2' design='heading'>
-            Working with GET request
-          </Typography>
-          <UserCards />
-        </Section>
+        <UserContextProvider>
+          <Section id={sectionIds.usersSection}>
+            <Typography as='h2' design='heading'>
+              Working with GET request
+            </Typography>
+            <UserCards />
+          </Section>
 
-        <Section id={sectionIds.formSection}>
-          <Form id='registerForm' />
-        </Section>
+          <Section id={sectionIds.formSection}>
+            <Form id='registerForm' />
+          </Section>
+        </UserContextProvider>
       </main>
     </>
   );

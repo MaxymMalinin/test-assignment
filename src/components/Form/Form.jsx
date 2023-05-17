@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { object, string, number, mixed } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { UserContext } from '../UserContextProvider/UserContextProvider';
 import { imageDimensionCheck } from '../../util/customYupValidation';
 import { postForm } from '../../services/testAssignmentApi';
 import Button from '../Button/Button';
@@ -61,8 +62,10 @@ function Form({ id }) {
     formState: { isDirty, isValid, isSubmitting, errors },
   } = form;
 
+  const { isSubmitSuccessfully, setIsSubmitSuccessfully } =
+    useContext(UserContext);
+
   const [error, setError] = useState('');
-  const [isSubmitSuccessfully, setIsSubmitSuccessfully] = useState(false);
 
   const onSubmit = data => {
     const formatPhone = phone => phone.replace(/[^+0-9]/g, '');
@@ -74,7 +77,12 @@ function Form({ id }) {
     };
 
     postForm(formattedData)
+      .then(() => setIsSubmitSuccessfully(true))
       .catch(error => {
+        console.log(error);
+        console.log(error.response);
+        console.log(error.response.status);
+
         const status = error.response.status;
 
         if (status === 401) {
@@ -92,8 +100,7 @@ function Form({ id }) {
         }
 
         return setError('An error occurred while submitting form. Try again');
-      })
-      .then(setIsSubmitSuccessfully(true));
+      });
   };
 
   if (isSubmitSuccessfully) {
