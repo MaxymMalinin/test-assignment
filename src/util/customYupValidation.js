@@ -31,7 +31,10 @@ const imageDimensionCheck = addMethod(
       async function (value) {
         const { path, createError } = this;
 
-        if (!value[0]) {
+        if (
+          !value[0] ||
+          (value[0].type !== 'image/jpeg' && value[0].type !== 'image/jpg')
+        ) {
           return;
         }
 

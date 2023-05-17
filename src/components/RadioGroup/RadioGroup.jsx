@@ -6,7 +6,7 @@ import { getPositions } from '../../services/testAssignmentApi';
 
 import './RadioGroup.scss';
 
-function RadioGroup({ id, name }) {
+function RadioGroup({ id, name, register }) {
   const [positions, setPositions] = useState();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -47,6 +47,7 @@ function RadioGroup({ id, name }) {
           id={`${id}${item.id}`}
           name={name}
           label={item.name}
+          register={register}
         />
       ))}
     </div>

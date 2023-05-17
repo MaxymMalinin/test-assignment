@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 import './PhotoUpload.scss';
 
-function PhotoUpload({ id, name, label, placeholder }) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-
+function PhotoUpload({ id, name, label, placeholder, register, errors }) {
   const [fileName, setFileName] = useState('');
 
   const errMessage = errors[name]?.message;
+
+  console.log(errMessage);
 
   return (
     <div className={`photo${errMessage ? ' photo__error' : ''}`}>

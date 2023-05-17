@@ -1,15 +1,17 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
 import InputMask from 'react-input-mask-3.0';
 
 import './Input.scss';
 
-function Input({ type = 'text', id = '', name = '', label = '', helperText }) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-
+function Input({
+  type = 'text',
+  id = '',
+  name = '',
+  label = '',
+  helperText,
+  register,
+  errors,
+}) {
   const errMessage = errors[name]?.message;
 
   return (

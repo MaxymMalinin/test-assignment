@@ -1,11 +1,8 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
 
 import './Radio.scss';
 
-function Radio({ value, id, name, label }) {
-  const { register } = useFormContext();
-
+function Radio({ value, id, name, label, register }) {
   return (
     <div className='radio'>
       <input

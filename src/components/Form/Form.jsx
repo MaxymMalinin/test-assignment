@@ -46,7 +46,7 @@ const schema = object({
         (value[0].type === 'image/jpeg' || value[0].type === 'image/jpg')
       );
     })
-    .imageDimensionCheck('test', 70, 70),
+    .imageDimensionCheck('Maxxxxxxxxxxxxxxx', 70, 70),
 });
 
 function Form({ id }) {
@@ -56,11 +56,13 @@ function Form({ id }) {
   });
 
   const {
+    register,
     handleSubmit,
-    formState: { isDirty, isValid, isSubmitting },
+    formState: { isDirty, isValid, isSubmitting, errors },
   } = form;
 
   const [error, setError] = useState('');
+  const [isSubmitSuccessfully, setIsSubmitSuccessfully] = useState(false);
 
   const onSubmit = data => {
     const formatPhone = phone => phone.replace(/[^+0-9]/g, '');
@@ -71,28 +73,30 @@ function Form({ id }) {
       phone: formatPhone(data.phone),
     };
 
-    postForm(formattedData).catch(error => {
-      const status = error.response.status;
+    postForm(formattedData)
+      .catch(error => {
+        const status = error.response.status;
 
-      if (status === 401) {
-        return setError(
-          'Registration time has expired. Please reload the page and try again'
-        );
-      }
+        if (status === 401) {
+          return setError(
+            'Registration time has expired. Please reload the page and try again'
+          );
+        }
 
-      if (status === 409) {
-        return setError(error.response.data.message);
-      }
+        if (status === 409) {
+          return setError(error.response.data.message);
+        }
 
-      if (status === 422) {
-        return setError('One or more fields are incorrectly filled');
-      }
+        if (status === 422) {
+          return setError('One or more fields are incorrectly filled');
+        }
 
-      return setError('An error occurred while submitting form. Try again');
-    });
+        return setError('An error occurred while submitting form. Try again');
+      })
+      .then(setIsSubmitSuccessfully(true));
   };
 
-  if (false) {
+  if (isSubmitSuccessfully) {
     return (
       <>
         <Typography as='h2' design='heading'>
@@ -109,31 +113,51 @@ function Form({ id }) {
         Working with POST request
       </Typography>
 
-      <FormProvider {...form}>
-        <form
-          id={id}
-          className='form'
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-        >
-          <Input type='text' id='name' name='name' label='Your name' />
-          <Input type='email' id='email' name='email' label='Email' />
-          <Input
-            type='tel'
-            id='phone'
-            name='phone'
-            label='Phone'
-            helperText='+38 (XXX) XXX - XX - XX'
-          />
-          <RadioGroup id='positionChoice' name='position_id' />
-          <PhotoUpload
-            id='photo'
-            name='photo'
-            label='Upload'
-            placeholder='Upload your photo'
-          />
-        </form>
-      </FormProvider>
+      <form
+        id={id}
+        className='form'
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
+        <Input
+          type='text'
+          id='name'
+          name='name'
+          label='Your name'
+          register={register}
+          errors={errors}
+        />
+        <Input
+          type='email'
+          id='email'
+          name='email'
+          label='Email'
+          register={register}
+          errors={errors}
+        />
+        <Input
+          type='tel'
+          id='phone'
+          name='phone'
+          label='Phone'
+          helperText='+38 (XXX) XXX - XX - XX'
+          register={register}
+          errors={errors}
+        />
+        <RadioGroup
+          id='positionChoice'
+          name='position_id'
+          register={register}
+        />
+        <PhotoUpload
+          id='photo'
+          name='photo'
+          label='Upload'
+          placeholder='Upload your photo'
+          register={register}
+          errors={errors}
+        />
+      </form>
 
       <Button
         type='submit'

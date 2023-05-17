@@ -27,11 +27,13 @@ function UserCards() {
   }, []);
 
   const handleClick = () => {
-    getUsers(currentPageNumber + 1).then(data => {
-      setUsers([...users, ...data.users]);
-      setNextPageUrl(data.links.next_url);
-      setCurrentPageNumber(data.page).catch(() => setError(true));
-    });
+    getUsers(currentPageNumber + 1)
+      .then(data => {
+        setUsers([...users, ...data.users]);
+        setNextPageUrl(data.links.next_url);
+        setCurrentPageNumber(data.page);
+      })
+      .catch(() => setError(true));
   };
 
   if (isLoading) {
