@@ -7,8 +7,6 @@ function PhotoUpload({ id, name, label, placeholder, register, errors }) {
 
   const errMessage = errors[name]?.message;
 
-  console.log(errMessage);
-
   return (
     <div className={`photo${errMessage ? ' photo__error' : ''}`}>
       <input
