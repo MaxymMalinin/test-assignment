@@ -13,4 +13,19 @@ const getPositions = () => {
   return axios.get('/positions').then(response => response.data);
 };
 
-export { getUsers, getPositions };
+const getToken = () => {
+  return axios.get('/token').then(response => response.data.token);
+};
+
+const postForm = formattedData => {
+  return getToken().then(token =>
+    axios.post('/users', formattedData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Token: 4243,
+      },
+    })
+  );
+};
+
+export { getUsers, getPositions, postForm };

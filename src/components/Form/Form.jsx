@@ -2,8 +2,9 @@ import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { object, string, number, mixed } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { imageDimensionCheck } from '../../util/customYupValidation';
 
+import { imageDimensionCheck } from '../../util/customYupValidation';
+import { postForm } from '../../services/testAssignmentApi';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import Svg from '../svg/svg';
@@ -68,7 +69,13 @@ function Form({ id }) {
       phone: formatPhone(data.phone),
     };
 
-    console.log('Form submitted', formattedData);
+    postForm(formattedData).catch(error => {
+      const status = error.response.status;
+
+      if (status === 401) {
+        console.log(error.response.status);
+      }
+    });
   };
 
   if (isSubmitSuccessful) {

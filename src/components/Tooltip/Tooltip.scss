@@ -8,7 +8,7 @@
   &_container {
     position: absolute;
     padding: 3px 16px;
-    text-align: initial;
+    text-align: left;
     background-color: color.$black;
     color: color.$default-white;
     width: max-content;
@@ -20,6 +20,7 @@
     transition: 0.3s;
     opacity: 0;
     visibility: hidden;
+    word-break: break-all;
     z-index: 1;
   }
 
