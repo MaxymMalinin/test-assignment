@@ -46,7 +46,7 @@ const imageDimensionCheck = addMethod(
         ) {
           return createError({
             path,
-            message: `Photo resolution must be at least ${requiredWidth} x ${requiredHeight} px!`,
+            message: `Photo resolution must be at least ${requiredWidth} x ${requiredHeight} px`,
           });
         }
 
