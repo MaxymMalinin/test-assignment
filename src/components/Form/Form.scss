@@ -1,8 +1,22 @@
 @use '../../styles/vars/var';
+@use '../../styles/vars/color';
 
 .form {
   max-width: var.$content-max-width;
   margin: 0 auto;
+}
+
+.form-error {
+  position: absolute;
+  top: calc(100% - var.$section-item-spacing + var.$error-spacing);
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: var.$spacing-small;
+  max-width: var.$content-max-width;
+  box-sizing: content-box;
+  color: color.$error;
 }
 
 .success-image {

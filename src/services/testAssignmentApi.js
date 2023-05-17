@@ -22,7 +22,7 @@ const postForm = formattedData => {
     axios.post('/users', formattedData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        Token: 4243,
+        Token: token,
       },
     })
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { object, string, number, mixed } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -57,8 +57,10 @@ function Form({ id }) {
 
   const {
     handleSubmit,
-    formState: { isDirty, isValid, isSubmitting, isSubmitSuccessful },
+    formState: { isDirty, isValid, isSubmitting },
   } = form;
+
+  const [error, setError] = useState('');
 
   const onSubmit = data => {
     const formatPhone = phone => phone.replace(/[^+0-9]/g, '');
@@ -73,12 +75,24 @@ function Form({ id }) {
       const status = error.response.status;
 
       if (status === 401) {
-        console.log(error.response.status);
+        return setError(
+          'Registration time has expired. Please reload the page and try again'
+        );
       }
+
+      if (status === 409) {
+        return setError(error.response.data.message);
+      }
+
+      if (status === 422) {
+        return setError('One or more fields are incorrectly filled');
+      }
+
+      return setError('An error occurred while submitting form. Try again');
     });
   };
 
-  if (isSubmitSuccessful) {
+  if (false) {
     return (
       <>
         <Typography as='h2' design='heading'>
@@ -128,6 +142,7 @@ function Form({ id }) {
       >
         Sign Up
       </Button>
+      {error && <div className='form-error'>{error}</div>}
     </>
   );
 }

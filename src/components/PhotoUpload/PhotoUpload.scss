@@ -57,7 +57,7 @@
       @extend %text-small;
       position: absolute;
       left: 16px;
-      top: calc(100% + 4px);
+      top: calc(100% + var.$error-spacing);
       color: color.$error;
     }
   }

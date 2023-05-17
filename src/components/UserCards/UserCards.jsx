@@ -42,7 +42,7 @@ function UserCards() {
     return (
       <Typography>
         An error occurred while loading users. Reload the page or try again
-        later.
+        later
       </Typography>
     );
   }
